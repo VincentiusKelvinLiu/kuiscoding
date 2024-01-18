@@ -107,7 +107,6 @@
         function setCountdown() {
             var eventDate = new Date('2024-02-15T18:00:00').getTime();
 
-            // Update countdown setiap detik
             setInterval(function () {
                 var now = new Date().getTime();
                 var timeDiff = eventDate - now;
@@ -123,11 +122,9 @@
         setCountdown();
 
         function showPage(page) {
-          // Hide all pages
           const pages = document.querySelectorAll('.cover, .invitation, .closing');
           pages.forEach(page => page.classList.add('hidden'));
     
-          // Show the selected page
           document.querySelector($page).classList.remove('hidden');
         }
       </script>
