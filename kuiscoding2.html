@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Wedding!</title>
+    <style>
+        body{
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding:0;
+        }
+        header{
+            background-color: darkcyan;
+            color: darkgreen;
+            padding: 1em;
+            font-size: 1.5em;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+        main{
+            text-align: center;
+            padding: 20px;
+        }
+
+        footer{
+            text-align: center;
+            padding: 20px;
+            background-color: red;
+        }
+
+        button{
+            background-color: #4CAF50;
+            color:white;
+            padding:10px 20px;
+            border:none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .cover{
+            background-color: #e0e0e0;
+            padding:20px;
+        }
+
+        .invitation{
+            background-color: khaki;
+            padding:20px;
+            border: 1px solid blue;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgbs(0,0,0,0.1);
+        }
+
+        .closing{
+            background-color: bisque;
+            padding:20px;
+        }
+
+        /* hide element with the hidden class */
+        .hidden{ 
+            display:none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Our Wedding</h1>
+    </header>
+
+    <main id="content">
+        <section class="cover">
+            <h2>Welcome to Our Wedding Celebration</h2>
+            <p>Save the Date: 15 Februari, 2024</p>
+            <button onclick="showPage('invitation')">View Invitation</button>
+            <div class="countdown" id="countdown"></div>
+        </section>
+        <section class="invitation hidden">
+            <h2>You're invited!</h2>
+            <p>We are excited to invite you to our wedding Celebration</p>
+            <p>Date: June,2023</p>
+            <p>Time: 6:00 PM </p>
+            <p>Venue: HolyWings</p>
+            <button onclick="showPage('closing')">Closing</button>
+        </section>
+
+        <section class="closing hidden">
+            <h2>Thank You!</h2> 
+            <p>Thank you for being a part of our special day.</p>
+            <p>we look forward to celebrating with you!</p>
+            <button onclick="showPage('cover')">Back to Cover</button>
+        </section>
+    </main>
+    <footer>
+        Thank you for joining us!
+    </footer>
+    <script>
+        function setCountdown() {
+            var eventDate = new Date('2024-02-15T18:00:00').getTime();
+
+            // Update countdown setiap detik
+            setInterval(function () {
+                var now = new Date().getTime();
+                var timeDiff = eventDate - now;
+
+                var days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+                var hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+
+                document.getElementById('countdown').innerHTML = days + ' hari ' + hours + ' jam ' + minutes + ' menit ' + seconds + ' detik';
+            }, 1000);
+        }
+        setCountdown();
+
+        function showPage(page) {
+          // Hide all pages
+          const pages = document.querySelectorAll('.cover, .invitation, .closing');
+          pages.forEach(page => page.classList.add('hidden'));
+    
+          // Show the selected page
+          document.querySelector($page).classList.remove('hidden');
+        }
+      </script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark Mode with Cookies</title>
+    <style>
+        body {
+            transition: background-color 0.5s, color 0.5s;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-repeat: no-repeat;
+            background-position: top right;
+            background-size: 100px 100px; /* Adjust the size of the background images */
+        }
+
+        .dark-mode {
+            background-color: black;
+            color: white;
+            background-image: url('moon.jpg'); /* Replace with the path to your moon image */
+        }
+
+        .toggle-button {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            padding: 8px 16px;
+            background-color: transparent;
+            border: none;
+            color: inherit;
+            display: flex;
+            align-items: center;
+        }
+
+        .sun,
+        .moon {
+            font-size: 24px;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <button class="toggle-button" onclick="toggleMode()">
+        <span class="sun" id="sunIcon">☀️</span>
+        <span class="moon" id="moonIcon" style="display:none">🌙</span>
+        Toggle Mode
+    </button>
+
+    <script>
+        // Function to set a cookie
+        function setCookie(name, value, days) {
+            const expires = new Date();
+            expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
+            document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/`;
+        }
+
+        // Function to get a cookie value
+        function getCookie(name) {
+            const cookieName = `${name}=`;
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                let cookie = cookies[i].trim();
+                if (cookie.indexOf(cookieName) === 0) {
+                    return cookie.substring(cookieName.length, cookie.length);
+                }
+            }
+            return '';
+        }
+
+        // Function to toggle dark mode
+        function toggleMode() {
+            const body = document.body;
+            const sunIcon = document.getElementById('sunIcon');
+            const moonIcon = document.getElementById('moonIcon');
+
+            body.classList.toggle('dark-mode');
+
+            // Save the dark mode preference to a cookie
+            const isDarkMode = body.classList.contains('dark-mode');
+            setCookie('darkMode', isDarkMode ? '1' : '0', 365);
+
+            if (isDarkMode) {
+                sunIcon.style.display = 'none';
+                moonIcon.style.display = 'inline';
+            } else {
+                sunIcon.style.display = 'inline';
+                moonIcon.style.display = 'none';
+            }
+        }
+
+        // Check for dark mode preference on page load
+        document.addEventListener('DOMContentLoaded', function () {
+            const body = document.body;
+            const darkModeCookie = getCookie('darkMode');
+            if (darkModeCookie === '1') {
+                body.classList.add('dark-mode');
+                document.getElementById('sunIcon').style.display = 'none';
+                document.getElementById('moonIcon').style.display = 'inline';
+            }
+        });
+    </script>
+</body>
+
+</html>

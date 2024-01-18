@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Random Image</title>
+</head>
+
+<body>
+
+    <img id="randomImage" src="" alt="Random Image">
+
+    <script>
+        const randomImage = document.getElementById('randomImage');
+        const resultContainer = document.getElementById('resultContainer');
+        const images = ['63ea22ef63581880ffbb0958dac8b98f.jpeg.jpg', 'gedung-opera-sydney.jpg', 'WhatsApp Image 2022-10-12 at 18.32.53.jpeg', 'WhatsApp Image 2022-10-18 at 19.54.51.jpeg', 'Yamato1.jpg'];
+
+        function refreshImage() {
+            const randomImagePath = images[Math.floor(Math.random() * images.length)];
+
+            const img = new Image();
+            img.src = randomImagePath;
+            img.onload = function () {
+                randomImage.src = randomImagePath;
+
+                resultContainer.innerHTML = `Result: <b>${randomImagePath}</b>`;
+            };
+            img.onerror = function () {
+                resultContainer.innerHTML = `Error: Image not found - ${randomImagePath}`;
+            };
+        }
+        refreshImage();
+    </script>
+</body>
+
+</html>

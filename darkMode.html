@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark Mode</title>
+    <style>
+        body {
+            transition: background-color 0.5s, color 0.5s;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .dark-mode {
+            background-color: black;
+            color: white;
+        }
+
+        .toggle-button {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            padding: 8px 16px;
+        }
+
+        .sun {
+            font-size: 24px;
+            margin-right: 5px;
+        }
+
+        .moon {
+            font-size: 24px;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <button class="toggle-button" onclick="toggleMode()">
+        <span class="sun" id="sunIcon">☀️</span>
+        <span class="moon" id="moonIcon" style="display:none">🌙</span>
+        Toggle Mode
+    </button>
+
+    <script>
+        function toggleMode() {
+            const body = document.body;
+            const sunIcon = document.getElementById('sunIcon');
+            const moonIcon = document.getElementById('moonIcon');
+
+            body.classList.toggle('dark-mode');
+            if (body.classList.contains('dark-mode')) {
+                sunIcon.style.display = 'none';
+                moonIcon.style.display = 'inline';
+            } else {
+                sunIcon.style.display = 'inline';
+                moonIcon.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+
+</html>
