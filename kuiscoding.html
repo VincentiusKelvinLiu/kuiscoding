@@ -18,6 +18,16 @@
       color: cyan;
       padding: 1em;
       font-size: 1.5em;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+            from {
+                opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
     }
 
     main{
@@ -41,6 +51,15 @@
       position: fixed;
       bottom: 0;
       width: 100%;
+    }
+
+    .menu {
+        width: 25%;
+        float: left;
+    }
+    .main {
+        width: 75%;
+        float: left;
     }
 
     .cover{
