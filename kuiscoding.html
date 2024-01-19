@@ -185,20 +185,16 @@
               html.classList.toggle('dark-mode');
               button.classList.toggle('moon', html.classList.contains('dark-mode'));
 
-              // Update background image based on dark mode state
               updateDarkModeButtonImage();
 
-              // Store dark mode state in local storage
               localStorage.setItem('darkModeEnabled', html.classList.contains('dark-mode'));
           });
 
-          // Function to update DarkModeButton image based on dark mode state
           function updateDarkModeButtonImage() {
               const isDarkMode = html.classList.contains('dark-mode');
               button.style.backgroundImage = isDarkMode ? "url('images/sun.jpeg')" : "url('images/moon.jpeg')";
           }
 
-          // Initial setup of DarkModeButton image and dark mode state
           const isDarkModeEnabled = localStorage.getItem('darkModeEnabled') === 'true';
           html.classList.toggle('dark-mode', isDarkModeEnabled);
           button.classList.toggle('moon', isDarkModeEnabled);
@@ -208,7 +204,6 @@
       function setCountdown() {
           var eventDate = new Date('2024-07-20T18:00:00').getTime();
 
-          // Update countdown setiap detik
           setInterval(function () {
               var now = new Date().getTime();
               var timeDiff = eventDate - now;
