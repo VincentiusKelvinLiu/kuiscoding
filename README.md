@@ -1,1 +1,1 @@
-Invite Wedding
+Wedding-Invite
